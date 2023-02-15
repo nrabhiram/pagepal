@@ -18,4 +18,13 @@ describe('Bookmark List', () => {
     bookmarkList.add(bookmark2);
     expect(bookmarkList.bookmarks[1]).toEqual(bookmark2);
   });
+
+  it('A bookmark list with a single bookmark, upon editing it, has a single bookmark with it being the edited one', () => {
+    const bookmarkList = new BookmarkList();
+    const bookmark = new Bookmark(new Link('https://test.com/'), new Label('Bookmark'));
+    bookmarkList.add(bookmark);
+    const editedBookmark = new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark'));
+    bookmarkList.edit(bookmark, editedBookmark);
+    expect(bookmarkList.bookmarks[0]).toEqual(editedBookmark);
+  });
 });

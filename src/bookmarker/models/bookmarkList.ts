@@ -14,4 +14,8 @@ export class BookmarkList {
   add(bookmark: Bookmark) {
     this.bookmarks.push(bookmark);
   }
+
+  edit(bookmark: Bookmark, editedBookmark: Bookmark) {
+    bookmark.edit(editedBookmark);
+  }
 }
