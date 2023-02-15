@@ -1,10 +1,11 @@
+import { Link } from './link';
 import { Label } from './label';
 
 export class Bookmark {
-  link: string;
+  link: Link;
   label: Label;
 
-  constructor(link: string, label: Label) {
+  constructor(link: Link, label: Label) {
     this.link = link;
     this.label = label;
   }
