@@ -12,7 +12,17 @@ export class BookmarkList {
     } else {
       this.bookmarks = [];
     }
-    this.count = 0;
+    let highestId = 0;
+    if (bookmarks && bookmarks.length > 0) {
+      for (let i = 0; i < bookmarks.length; i++) {
+        if (bookmarks[i].id > highestId) {
+          highestId = bookmarks[i].id;
+        }
+      }
+      this.count = highestId + 1;
+    } else {
+      this.count = 0;
+    }
   }
 
   add(link: Link, label: Label) {
