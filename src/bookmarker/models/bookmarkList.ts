@@ -19,9 +19,20 @@ export class BookmarkList {
     const bookmark = new Bookmark(link, label, this.count);
     this.bookmarks.push(bookmark);
     this.count++;
+    return bookmark;
   }
 
   edit(bookmark: Bookmark, editedBookmark: Bookmark) {
     bookmark.edit(editedBookmark);
+  }
+
+  delete(bookmark: Bookmark) {
+    const newBookmarks: Bookmark[] = [];
+    for (let i = 0; i < this.bookmarks.length; i++) {
+      if (!bookmark.equals(this.bookmarks[i])) {
+        newBookmarks.push(this.bookmarks[i]);
+      }
+    }
+    this.bookmarks = newBookmarks;
   }
 }

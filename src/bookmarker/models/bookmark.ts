@@ -20,4 +20,8 @@ export class Bookmark {
     this.link = bookmark.link;
     this.label = bookmark.label;
   }
+
+  equals(bookmark: Bookmark) {
+    return this.link.url === bookmark.link.url && this.label.name === bookmark.label.name && this.id === bookmark.id;
+  }
 }
