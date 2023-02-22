@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from '../button/Button';
 import { SearchBar } from '../searchbar/SearchBar';
 import styles from './AppHeader.module.css';
 import { Modal } from '../modal/Modal';
 import { BookmarkForm } from '../form/BookmarkForm';
+import { BookmarkContext } from '../../context/bookmark-context';
+import { SearchContext } from '../../context/search-context';
 
 export const AppHeader = () => {
   const [adding, setAdding] = useState(false);
+  const bookmarkContext = useContext(BookmarkContext);
+  const searchContext = useContext(SearchContext);
 
   return (
     <>
@@ -22,6 +26,7 @@ export const AppHeader = () => {
           link=""
           CTAText="Add"
           submitAction={(formData: { link: string; label: string }) => {
+            bookmarkContext.addBookmark(formData.link, formData.label);
             setAdding(false);
           }}
         />
@@ -29,7 +34,7 @@ export const AppHeader = () => {
       <div className={styles['header']}>
         <h1 className={styles['title']}>🔖pagepal</h1>
         <div className={styles['search-bar']}>
-          <SearchBar query="" onQueryChanged={(query: string) => {}} />
+          <SearchBar query={searchContext.query} onQueryChanged={searchContext.updateQuery} />
         </div>
         <div className={styles['btn']}>
           <Button

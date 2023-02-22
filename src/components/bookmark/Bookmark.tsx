@@ -5,16 +5,23 @@ import { Button } from '../button/Button';
 import { BookmarkForm } from '../form/BookmarkForm';
 import { Message } from '../message/Message';
 import { Spacer } from '../spacer/Spacer';
+import { RenderedBookmark } from '../../bookmarker/controller';
 
-export const Bookmark = () => {
+export const Bookmark: React.FC<{
+  bookmark: RenderedBookmark;
+  editHandler: (bookmark: RenderedBookmark, editedUrl: string, editedName: string) => void;
+  deleteHandler: (bookmark: RenderedBookmark) => void;
+}> = (props) => {
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
   const editBookmark = (formData: { link: string; label: string }) => {
+    props.editHandler(props.bookmark, formData.link, formData.label);
     setEditing(false);
   };
 
   const deleteBookmark = () => {
+    props.deleteHandler(props.bookmark);
     setDeleting(false);
   };
 
@@ -24,24 +31,22 @@ export const Bookmark = () => {
 
   return (
     <>
-      {editing && (
-        <Modal
-          open={editing}
-          onClose={() => {
-            setEditing(false);
-          }}
-        >
-          <div className={styles['delete-msg-card']}>
-            <BookmarkForm
-              formHeading="Edit the bookmark"
-              label="Bookmark Label State"
-              link="Bookmark Link State"
-              CTAText="Edit"
-              submitAction={editBookmark}
-            />
-          </div>
-        </Modal>
-      )}
+      <Modal
+        open={editing}
+        onClose={() => {
+          setEditing(false);
+        }}
+      >
+        <div className={styles['delete-msg-card']}>
+          <BookmarkForm
+            formHeading="Edit the bookmark"
+            label={props.bookmark.label}
+            link={props.bookmark.link}
+            CTAText="Edit"
+            submitAction={editBookmark}
+          />
+        </div>
+      </Modal>
       <Modal open={deleting} onClose={removeDeleteBookmarkMessage}>
         <Message
           heading="Delete Bookmark"
@@ -55,9 +60,9 @@ export const Bookmark = () => {
       <div className={styles['card']}>
         <div className={styles['content']}>
           <div>
-            <h2 className={styles['label']}>Bookmark Label</h2>
-            <a className={styles['url']} href="https://github.com" rel="noreferrer" target="_blank">
-              https://github.com
+            <h2 className={styles['label']}>{props.bookmark.label}</h2>
+            <a className={styles['url']} href={props.bookmark.link} rel="noreferrer" target="_blank">
+              {props.bookmark.link}
             </a>
           </div>
           <Spacer />

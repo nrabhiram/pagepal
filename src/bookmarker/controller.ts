@@ -13,16 +13,18 @@ export type RenderedBookmarkList = RenderedBookmark[];
 
 export class Controller {
   add(url: string, name: string) {
-    const bookmarkList = this.bookmarks();
+    const bookmarkList = this.read();
     const parser = new Parser();
+    const renderer = new Renderer();
     const link = parser.link(url);
     const label = parser.label(name);
-    bookmarkList.add(link, label);
+    const newBookmark = bookmarkList.add(link, label);
     this.write(bookmarkList);
+    return renderer.bookmark(newBookmark);
   }
 
   edit(bookmark: RenderedBookmark, editedUrl: string, editedName: string) {
-    const bookmarkList = this.bookmarks();
+    const bookmarkList = this.read();
     const parser = new Parser();
     const originalBookmark = parser.bookmark(bookmark);
     const editedLink = parser.link(editedUrl);
@@ -33,7 +35,7 @@ export class Controller {
   }
 
   delete(bookmark: RenderedBookmark) {
-    const bookmarkList = this.bookmarks();
+    const bookmarkList = this.read();
     const parser = new Parser();
     const bookmarkToBeDeleted = parser.bookmark(bookmark);
     bookmarkList.delete(bookmarkToBeDeleted);
@@ -41,6 +43,12 @@ export class Controller {
   }
 
   bookmarks() {
+    const bookmarkList = this.read();
+    const renderer = new Renderer();
+    return renderer.bookmarkList(bookmarkList);
+  }
+
+  private read() {
     const JSONParsedBookmarks = JSON.parse(localStorage.getItem('bookmarks') as string);
     const parser = new Parser();
     let bookmarks: BookmarkList;

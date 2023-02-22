@@ -19,23 +19,31 @@ interface InputAction {
   value: string;
 }
 
+const validateLabel = (label: string) => {
+  return label.trim().length > 0;
+};
+
+const validateLink = (link: string) => {
+  const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+  const regex = new RegExp(expression);
+  return regex.test(link);
+};
+
 const labelReducer = (state: InputState, action: InputAction) => {
   if (action.type === InputActionType.CHANGE) {
-    return { value: action.value, valid: action.value.trim().length > 0, displayMessage: false };
+    return { value: action.value, valid: validateLabel(action.value), displayMessage: false };
   } else if (action.type === InputActionType.SUBMIT) {
-    return { value: state.value, valid: state.value.trim().length > 0, displayMessage: true };
+    return { value: state.value, valid: validateLabel(state.value), displayMessage: true };
   } else {
     return { value: '', valid: false, displayMessage: false };
   }
 };
 
 const linkReducer = (state: InputState, action: InputAction) => {
-  const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-  const regex = new RegExp(expression);
   if (action.type === InputActionType.CHANGE) {
-    return { value: action.value, valid: regex.test(action.value), displayMessage: false };
+    return { value: action.value, valid: validateLink(action.value), displayMessage: false };
   } else if (action.type === InputActionType.SUBMIT) {
-    return { value: state.value, valid: regex.test(state.value), displayMessage: true };
+    return { value: state.value, valid: validateLink(state.value), displayMessage: true };
   } else {
     return { value: '', valid: false, displayMessage: false };
   }
@@ -50,10 +58,14 @@ export const BookmarkForm: React.FC<{
 }> = (props) => {
   const [labelState, dispatchLabel] = useReducer(labelReducer, {
     value: props.label,
-    valid: false,
+    valid: validateLabel(props.label),
     displayMessage: false,
   });
-  const [linkState, dispatchLink] = useReducer(linkReducer, { value: props.link, valid: false, displayMessage: false });
+  const [linkState, dispatchLink] = useReducer(linkReducer, {
+    value: props.link,
+    valid: validateLink(props.link),
+    displayMessage: false,
+  });
   const [formIsValid, setFormIsValid] = useState(true);
 
   useEffect(() => {
