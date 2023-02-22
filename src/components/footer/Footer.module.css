@@ -1,0 +1,6 @@
+.footer {
+    @apply text-center text-sm mb-4 text-cyan-50;
+}
+.link {
+    @apply transition-all ease-in-out duration-200 text-amber-300 hover:text-amber-400;
+}

@@ -1,0 +1,11 @@
+.container {
+    @apply my-2
+}
+
+.label {
+    @apply block text-sm font-medium text-gray-700;
+}
+
+.input {
+    @apply mt-1 block w-full p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm;
+}
