@@ -33,6 +33,11 @@ export class BookmarkList {
   }
 
   edit(bookmark: Bookmark, editedBookmark: Bookmark) {
+    for (let i = 0; i < this.bookmarks.length; i++) {
+      if (bookmark.equals(this.bookmarks[i])) {
+        this.bookmarks[i].edit(editedBookmark);
+      }
+    }
     bookmark.edit(editedBookmark);
   }
 
