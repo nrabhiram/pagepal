@@ -7,6 +7,15 @@ import { Message } from '../message/Message';
 import { Spacer } from '../spacer/Spacer';
 import { RenderedBookmark } from '../../bookmarker/controller';
 
+const format = (string: string, limit: number) => {
+  const shouldBeTruncated = string.length >= limit;
+  if (shouldBeTruncated) {
+    return `${string.substring(0, limit)}...`;
+  } else {
+    return string;
+  }
+};
+
 export const Bookmark: React.FC<{
   bookmark: RenderedBookmark;
   editHandler: (bookmark: RenderedBookmark, editedUrl: string, editedName: string) => void;
@@ -60,9 +69,9 @@ export const Bookmark: React.FC<{
       <div className={styles['card']}>
         <div className={styles['content']}>
           <div>
-            <h2 className={styles['label']}>{props.bookmark.label}</h2>
+            <h2 className={styles['label']}>{format(props.bookmark.label, 20)}</h2>
             <a className={styles['url']} href={props.bookmark.link} rel="noreferrer" target="_blank">
-              {props.bookmark.link}
+              {format(props.bookmark.link, 45)}
             </a>
           </div>
           <Spacer />

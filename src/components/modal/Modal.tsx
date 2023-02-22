@@ -1,9 +1,12 @@
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
 
 export const Modal: React.FC<React.PropsWithChildren<{ open: boolean; onClose: () => void }>> = (props) => {
+  const modalOverlayRef = useRef<HTMLDivElement>(null);
+
   const closeModal = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).matches('#modal-content-overlay')) {
+    if (e.target === modalOverlayRef.current) {
       props.onClose();
     }
   };
@@ -17,7 +20,7 @@ export const Modal: React.FC<React.PropsWithChildren<{ open: boolean; onClose: (
             <div className={styles['modal-content']}>
               <div
                 className={styles['content-container']}
-                id="modal-content-overlay"
+                ref={modalOverlayRef}
                 onClick={closeModal}
                 role="presentation"
               >
