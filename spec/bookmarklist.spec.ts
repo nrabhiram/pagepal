@@ -26,7 +26,7 @@ describe('Bookmark List', () => {
       const bookmarkList = new BookmarkList();
       bookmarkList.add(new Link('https://test.com/'), new Label('Bookmark'));
       bookmarkList.edit(
-        bookmarkList.bookmarks[0],
+        new Bookmark(new Link('https://test.com/'), new Label('Bookmark'), 0),
         new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark')),
       );
       const editedBookmark = new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark'), 0);
@@ -38,7 +38,7 @@ describe('Bookmark List', () => {
       bookmarkList.add(new Link('https://test1.com/'), new Label('Bookmark 1'));
       bookmarkList.add(new Link('https://test2.com/'), new Label('Bookmark 2'));
       bookmarkList.edit(
-        bookmarkList.bookmarks[1],
+        new Bookmark(new Link('https://test2.com/'), new Label('Bookmark 2'), 1),
         new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark')),
       );
       const editedBookmark = new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark'), 1);
@@ -51,7 +51,7 @@ describe('Bookmark List', () => {
       bookmarkList.add(new Link('https://test2.com/'), new Label('Bookmark 2'));
       bookmarkList.add(new Link('https://test3.com/'), new Label('Bookmark 3'));
       bookmarkList.edit(
-        bookmarkList.bookmarks[1],
+        new Bookmark(new Link('https://test2.com/'), new Label('Bookmark 2'), 1),
         new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark')),
       );
       const editedBookmark = new Bookmark(new Link('https://editedtest.com/'), new Label('Edited Bookmark'), 1);
