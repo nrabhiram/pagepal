@@ -15,6 +15,9 @@ export const BookmarkList = () => {
   return (
     <div className={styles['container']}>
       <div className="mx-1">
+        {bookmarks.length === 0 && (
+          <div className="mx-auto text-center text-cyan-600 text-sm">Oops...no bookmarks exist!</div>
+        )}
         {bookmarks.map((bookmark) => (
           <Bookmark
             bookmark={bookmark}
