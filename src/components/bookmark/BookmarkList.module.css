@@ -1,0 +1,3 @@
+.container {
+    @apply max-h-[60vh] w-full overflow-y-scroll rounded-b-lg px-6 pb-6;
+}

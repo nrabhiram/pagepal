@@ -1,0 +1,23 @@
+.header {
+    @apply w-full flex items-center flex-wrap bg-cyan-50 p-6 rounded-t-lg;
+}
+
+.title {
+    @apply font-semibold text-2xl tracking-tight text-gray-800 order-1;
+}
+
+.btn {
+    @apply flex justify-end order-2 md:order-3 ml-auto md:ml-0;
+}
+
+.btn-icon {
+    @apply fill-current w-5 h-5 sm:mr-2;
+}
+
+.btn-text {
+    @apply sm:inline-block hidden;
+}
+
+.search-bar {
+    @apply mx-0 md:mx-auto w-full md:w-72 order-3 md:order-2 flex justify-center mt-2 md:mt-0;
+}
