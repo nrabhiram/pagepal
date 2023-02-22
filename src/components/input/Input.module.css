@@ -7,5 +7,17 @@
 }
 
 .input {
-    @apply mt-1 block w-full p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm;
+    @apply mt-1 block w-full p-2 rounded-md shadow-sm focus:outline-none focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm;
+}
+
+.input-border {
+    @apply border-2 border-gray-300;
+}
+
+.input-error-border {
+    @apply border-2 border-red-500;
+}
+
+.error-msg {
+    @apply text-xs text-red-400;
 }

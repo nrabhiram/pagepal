@@ -6,6 +6,8 @@ export const Input: React.FC<{
   value: string;
   placeholder?: string;
   inputChange: (input: string) => void;
+  invalid: boolean;
+  errorMessage: string;
 }> = (props) => {
   return (
     <div className={styles['container']}>
@@ -15,13 +17,14 @@ export const Input: React.FC<{
       <input
         type="text"
         name={props.inputName}
-        className={styles['input']}
+        className={`${styles['input']} ${props.invalid ? styles['input-error-border'] : styles['input-border']}`}
         value={props.value}
         placeholder={props.placeholder ? props.placeholder : ''}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           props.inputChange(e.target.value);
         }}
       />
+      {props.invalid && <span className={styles['error-msg']}>{props.errorMessage}</span>}
     </div>
   );
 };

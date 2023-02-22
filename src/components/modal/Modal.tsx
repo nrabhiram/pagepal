@@ -19,7 +19,6 @@ export const Modal: React.FC<React.PropsWithChildren<{ open: boolean; onClose: (
                 className={styles['content-container']}
                 id="modal-content-overlay"
                 onClick={closeModal}
-                onKeyDown={props.onClose}
                 role="presentation"
               >
                 <div className={styles['content-card']}>{props.children}</div>
