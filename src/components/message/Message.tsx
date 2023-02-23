@@ -38,11 +38,11 @@ export const Message: React.FC<{
         </div>
       </div>
       <div className={styles['cta-container']}>
-        <Button level="primary" clickHandler={props.primaryAction}>
+        <Button level="primary" clickHandler={props.primaryAction} fullWidth={true}>
           {props.primaryCTAText}
         </Button>
         <div className={styles['spacer']}></div>
-        <Button level="secondary" clickHandler={props.secondaryAction}>
+        <Button level="secondary" clickHandler={props.secondaryAction} fullWidth={true}>
           {props.secondaryCTAText}
         </Button>
       </div>

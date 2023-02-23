@@ -35,5 +35,5 @@
 }
 
 .spacer {
-    @apply mr-2;
+    @apply sm:mr-2 mt-2;
 }
