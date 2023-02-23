@@ -3,7 +3,7 @@
 }
 
 .title {
-    @apply font-semibold text-2xl tracking-tight text-gray-800 order-1;
+    @apply font-semibold text-2xl tracking-tight text-blue-500 order-1;
 }
 
 .btn {
