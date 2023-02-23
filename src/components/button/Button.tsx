@@ -5,13 +5,14 @@ export const Button: React.FC<
     level: 'primary' | 'secondary' | 'tertiary';
     type?: 'submit';
     clickHandler?: () => void;
+    fullWidth?: boolean;
   }>
 > = (props) => {
   if (props.level === 'primary') {
     return (
       <button
         type={props.type}
-        className={styles['primary']}
+        className={`${styles['primary']} ${props.fullWidth ? styles['full-width'] : ''}`}
         onClick={props.clickHandler}
         onKeyDown={props.clickHandler}
       >
@@ -26,7 +27,7 @@ export const Button: React.FC<
         onKeyDown={props.clickHandler}
         role="presentation"
       >
-        <button type={props.type} className={styles['secondary']}>
+        <button type={props.type} className={`${styles['secondary']} ${props.fullWidth ? styles['full-width'] : ''}`}>
           {props.children}
         </button>
       </div>
