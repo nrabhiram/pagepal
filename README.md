@@ -13,6 +13,8 @@ A React application for managing your favorite places on the web. It allows you 
 
 During this project, I implemented the MVC architecture, test-drove the business logic, and learned and adopted good React practices.
 
+- I used CSS Modules with Tailwind so that the classes are scoped to their respective components.
+
 - I used the Context API and the `useContext` hook to manage the application-wide side. In fact, to separate our concerns of presentation and application state, I added the state (via the `useState` hook) and methods to update the state within the Contexts themselves.
 
     - For this application, I created two Contexts: One for the bookmarks and the other for the search query.
